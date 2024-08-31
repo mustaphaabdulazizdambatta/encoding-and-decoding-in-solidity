@@ -1,3 +1,4 @@
+
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
 
@@ -25,4 +26,15 @@ contract Encoding {
         string memory enc = abi.decode((encodeString()), (string));
         return  enc;
     }
+
+    function multiEncode() public  pure returns(bytes memory) {
+        bytes memory twoStrings = abi.encode("first string", "second string");
+        return twoStrings;
+    }
+
+    function multiDecode() public  pure returns(string memory, string memory) {
+        (string memory twoStrings, string memory thirdString) = abi.decode(multiEncode(), (string, string));
+        return (twoStrings, thirdString);
+    }
+
 }
